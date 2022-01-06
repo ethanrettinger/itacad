@@ -10,6 +10,11 @@ app = Flask(__name__, template_folder=os.path.abspath("../pages"))
 def landing():
     return render_template("landing/index.html")
 
+# '/message_board'
+@app.route("/message_board", methods=["GET"])
+def message_board():
+	return render_template("msgboard/index.html")
+
 # Initialize web server
 if __name__ == '__main__':
 	app.run(debug=True)
