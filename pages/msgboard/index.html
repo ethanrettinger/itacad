@@ -7,10 +7,22 @@
     <title>Web Page Test</title>
     <link rel='stylesheet' href='styles.css'>
     <script src='script.js'></script>
+    <!-- fontawesome  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
-      <main>
-        <h1>If you see this, it worked! (message board page)</h1>
-      </main>
+      <section id='messages'>
+        <div id='messageList'>
+          <h1>Chat</h1>
+          <form action='' method="POST">
+            <input type='text' autofill='off' autocomplete='off' id='message' placeholder='Type a message...' />
+            <button type='submit' id='send'><i class='fas fa-paper-plane'></i></button>
+          </form>
+        </div>
+        <div id='onlineUsers'>
+          <h1>Online Users</h1>
+        </div>
+        
+      </section>
   </body>
 </html>

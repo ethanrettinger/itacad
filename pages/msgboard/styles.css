@@ -1,10 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap');
 
-main {
-    width: 100%;
-    height: 100%;
+body {
+    margin: 0px;
+    padding: 0px;
+    /* fill screen */
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #42a5c4 0%, #db6cb1 100%);
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    font-family:Arial, Helvetica, sans-serif;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    color:rgba(255, 255, 255, 0.7);
+    user-select: none;
+}
+
+#messages {
+    /* make background frosted glass */
+    background: rgba(255, 255, 255, 0.3);
+    width: 70%;
+    height: 85%;
+
+    /* make it rounded */
+    border-radius: 4px;
+    overflow: hidden;
+    /* slight box shadow on bottom right*/
+    box-shadow: 4px 4px 6px rgba(97, 97, 97, 0.7);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#messageList {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+    width: 80%;
+    text-align: center;
+}
+
+div h1 {
+    font-size: 1.3em;
+    font-weight: 200;
+    margin-top: 25px;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    padding: 5px;
+}
+#onlineUsers {
+    /* make background frosted glass */
+    background: rgba(255, 255, 255, 0.144);
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    
+}
+
+form {
+    width: 100%;
+    height: 86%;
+    display: flex;
+    flex-direction: row;
+    /* put children at bottom of container */
+    justify-content: space-between;
+    align-items: flex-end;
+
+    box-sizing: border-box;
+    gap: 5px;
+}
+
+input, button {
+    box-sizing: border-box;
+    width: 90%;
+    height: auto;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255);
+    outline: none;
+}
+
+button[type="submit"] {
+    width: 10%;
+    height: auto;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255);
+    outline: none;
+    cursor: pointer;
+    content: "Send";
+}
+
+button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
+
+}
+
+/* stylize placeholder */
+::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
