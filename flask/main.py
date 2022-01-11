@@ -1,6 +1,7 @@
 # Import dependencies
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, jsonify
 import os
+import json
 
 # Initialize app object
 # The static folder will be in /pages
@@ -15,6 +16,17 @@ def landing():
 @app.route("/message_board", methods=["GET"])
 def message_board():
 	return render_template("msgboard/index.html")
+    
+# '/message_board/api'
+@app.route("/message_board/api", methods=["GET","POST"])
+def message_board_api():
+    if request.method == "GET":
+        f = open("../data/messages.json","r")
+        message_data = json.load(f)
+        f.close()
+        return jsonify(message_data)
+    elif request.method == "POST":
+        pass
 
 #Cooper: Make REST API that can:
 # GET the last 10 messages from ../data/messages.json
