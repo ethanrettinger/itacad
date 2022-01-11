@@ -58,7 +58,7 @@ body {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 300%;
     /* add padding to top and bottom */
     padding: 10px;
 }
@@ -195,7 +195,7 @@ button[type='submit']:hover {
 }
 
 /* stylize placeholder */
-::-webkit-input-placeholder {
+::-webkit-input-placeholder, ::-moz-placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
 
