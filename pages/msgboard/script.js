@@ -3,7 +3,6 @@
 function sendMessage(sender, content, options) {
     let isFromMe = options?.isFromMe;
     let time = options?.time;
-    console.log(content);
     /* check if content is empty */
     if (!content) {
         return;
@@ -33,7 +32,6 @@ function sendMessage(sender, content, options) {
         msgContainer.classList = 'message fromOther';
         messageName.innerHTML = '<p>' + sender + '</p>';
     }
-    console.log(msgContainer);
     let messageTime = document.createElement('div');
     messageTime.className = 'messageTime';
     // convert unix timestamp to readable time
@@ -45,7 +43,7 @@ function sendMessage(sender, content, options) {
     let messageBody = document.createElement('div');
     messageBody.className = 'messageBody';
     messageBody.innerHTML = '<p>' + content + '</p>';
-
+    
     /* append elements to divs */
     header.appendChild(messageName);
     header.appendChild(messageTime);
@@ -58,11 +56,6 @@ function sendMessage(sender, content, options) {
     if (!isFromMe) {
         return;
     }
-    console.log('PostData:', {
-        sender: sender,
-        content: content,
-        time: new Date().getTime(),
-    })
     $.ajax({
         url: '/message_board/api',
         type: 'POST',
@@ -72,9 +65,6 @@ function sendMessage(sender, content, options) {
             time: new Date().getTime(),
         },
         dataType: 'json',
-        success: function (data) {
-            console.log(data);
-        },
     });
 }
 
@@ -119,7 +109,6 @@ $.ajax({
     type: 'GET',
     dataType: 'json',
     success: function (data) {
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
             sendMessage(data[i]['sender'], data[i]['content'], {
                 time: data[i]['time'],
