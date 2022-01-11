@@ -1,16 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap');
 * { padding: 0; margin: 0; }
-html, body {
-    min-height: 100%;
+html {
+    height: 100vh;
+}
+body {
     height: 100%;
 }
-
 body {
     margin: 0px;
     padding: 0px;
     /* fill screen */
-    min-height: 100vh !important;
     overflow-x: hidden;
+    overflow-y: hidden;
     background: linear-gradient(to bottom right, #42a5c4 0%, #db6cb1 100%);
     display: flex;
     justify-content: center;
@@ -61,10 +62,6 @@ body {
     height: 300%;
     /* add padding to top and bottom */
     padding: 10px;
-}
-
-.message:first-of-type {
-    margin-top: 250px;
 }
 .message {
     /* make it rounded */
@@ -211,7 +208,7 @@ button[type='submit']:hover {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: rgb(255, 0, 0);
 }
 
 /* Handle on hover */
