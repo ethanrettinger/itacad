@@ -100,7 +100,7 @@ $('form').submit(function (e) {
     let content = $('#messageInput').val();
     $('input').val('');
     // send message
-    sendMessage(sender, content, new Date().getTime(), true);
+    sendMessage(sender, content, new Date(), true);
 });
 
 // send get request to django server to get messages
@@ -121,7 +121,6 @@ let socket = io.connect('http://localhost:5500');
 
 // socket detect broadcast message
 socket.on('message', function (data) {
-    console.log(data);
     sendMessage(data['sender'], data['content'], data['time'], false);
 });
 
