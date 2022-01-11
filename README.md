@@ -5,3 +5,4 @@ This repository contains all of the frontend and backend code for the web server
 ---
 1. Redesign frontend CSS from the ground up
 2. Create calendar on landing page
+3. Redesign backend web code
