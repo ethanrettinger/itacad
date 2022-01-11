@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\flask"
+    "\\flask",
+    "\\pages",
+    "\\pages\\msgboard"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\pages\\msgboard\\index.html",
   "PreviewInSolutionExplorer": false
 }
