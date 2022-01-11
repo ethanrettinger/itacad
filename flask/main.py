@@ -64,16 +64,6 @@ def message_board_api():
         except:
             return "False"
 
-#Cooper: Make REST API that can:
-# GET the last 10 messages from ../data/messages.json
-# -- Return the JSON object --
-# POST a new message to ../data/messages.json
-# -- Return true if successful --
-# -- Return false if unsuccessful --
-# -- When a message is posted, delete the oldest message if there are more than 10 messages --
-# (Thanks copilot for autocompleting my comments)
-
-
 # Initialize web server
 if __name__ == '__main__':
 	app.run(debug=True)
