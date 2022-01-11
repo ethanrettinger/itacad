@@ -44,6 +44,18 @@ function sendMessage(sender, content) {
     /* append msgContainer to message list */
     let messageList = document.getElementById("messageList");
     messageList.appendChild(msgContainer);
+    $.ajax({
+        url: "/msgboard/",
+        type: "POST",
+        data: {
+            sender: sender,
+            content: content
+        },
+        dataType: "json",
+        success: function(data) {
+            console.log(data)
+        }
+    });
 }
 
 function scrollSmoothToBottom (id) {
@@ -72,3 +84,20 @@ $("form").submit(function(e) {
     // send message
     sendMessage(sender, content);
 });
+
+
+// send get request to django server to get messages
+$.ajax({
+    url: "/msgboard/",
+    type: "GET",
+    dataType: "json",
+    success: function(data) {
+        console.log(data)
+        for(let i = 0; i < data.length; i++) {
+            sendMessage(data[i]["sender"], data[i]["content"]);
+        }
+    }   
+});
+
+
+// send post request to django server to send message
