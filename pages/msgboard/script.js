@@ -100,7 +100,7 @@ $('form').submit(function (e) {
     let content = $('#messageInput').val();
     $('input').val('');
     // send message
-    sendMessage(sender, content, true);
+    sendMessage(sender, content, new Date().getTime(), true);
 });
 
 // send get request to django server to get messages
