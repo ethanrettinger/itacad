@@ -22,6 +22,8 @@ def get_resource(path):
     }
     complete_path = os.path.join("../pages", path)
     ext = os.path.splitext(path)[1]
+    if ext == ".html":
+        return Response("You do not have permission to access this resource.", 401)
     mimetype = mimetypes.get(ext, "text/html")
     content = get_file(complete_path)
     return Response(content, mimetype=mimetype)
