@@ -52,8 +52,6 @@ def message_board_api():
             f = open("../data/messages.json","r")
             message_data = json.load(f)
             f.close()
-            if len(message_data) >= 10:
-                del message_data[0]
             new_msg = {}
             new_msg["sender"] = request.form["sender"]
             new_msg["content"] = request.form["content"]
