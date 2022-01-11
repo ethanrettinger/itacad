@@ -1,11 +1,31 @@
 # Import dependencies
-from flask import Flask, request, render_template, redirect, jsonify
+from flask import Flask, request, render_template, redirect, jsonify, Response
 import os
 import json
 
 # Initialize app object
-# The static folder will be in /pages
 app = Flask(__name__, template_folder=os.path.abspath("../pages"), static_folder=None)
+
+# File request handler
+@app.route('/<path:path>')
+def get_resource(path):
+    def get_file(filename):  # pragma: no cover
+        try:
+            src = os.path.join(filename)
+            return open(src).read()
+        except IOError as exc:
+            return str(exc)
+    mimetypes = {
+        ".css": "text/css",
+        ".html": "text/html",
+        ".js": "application/javascript",
+    }
+    complete_path = os.path.join("../pages", path)
+    ext = os.path.splitext(path)[1]
+    mimetype = mimetypes.get(ext, "text/html")
+    content = get_file(complete_path)
+    return Response(content, mimetype=mimetype)
+
 
 # '/'
 @app.route("/", methods=["GET"])
