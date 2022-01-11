@@ -29,7 +29,12 @@ function sendMessage(sender, content, time = new Date().getTime()) {
     console.log(msgContainer)
     let messageTime = document.createElement("div");
     messageTime.className = "messageTime";
-    messageTime.innerHTML = "<p>" + time.toLocaleTimeString() + "</p>";
+    // convert unix timestamp to readable time
+    // get 12 hour time from timestamp
+    let date = new Date(time).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+    messageTime.innerHTML = "<p>" + date + "</p>";
+    // format time
+    
     let messageBody = document.createElement("div");
     messageBody.className = "messageBody";
     messageBody.innerHTML = "<p>" + content + "</p>";
