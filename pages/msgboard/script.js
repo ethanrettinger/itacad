@@ -1,6 +1,6 @@
 // sendMessage function 
 
-function sendMessage(sender, content) {
+function sendMessage(sender, content, time = new Date().getTime()) {
     console.log(content)
     /* check if content is empty */
     if(!content) { return; }
@@ -29,8 +29,7 @@ function sendMessage(sender, content) {
     console.log(msgContainer)
     let messageTime = document.createElement("div");
     messageTime.className = "messageTime";
-    messageTime.innerHTML = "<p>" + new Date().toLocaleTimeString() + "</p>";
-
+    messageTime.innerHTML = "<p>" + time.toLocaleTimeString() + "</p>";
     let messageBody = document.createElement("div");
     messageBody.className = "messageBody";
     messageBody.innerHTML = "<p>" + content + "</p>";
@@ -45,7 +44,7 @@ function sendMessage(sender, content) {
     let messageList = document.getElementById("messageList");
     messageList.appendChild(msgContainer);
     $.ajax({
-        url: "/msgboard/",
+        url: "/message_board/api",
         type: "POST",
         data: {
             sender: sender,
@@ -89,13 +88,13 @@ $("form").submit(function(e) {
 
 // send get request to django server to get messages
 $.ajax({
-    url: "/msgboard/",
+    url: "/message_board/api",
     type: "GET",
     dataType: "json",
     success: function(data) {
         console.log(data)
         for(let i = 0; i < data.length; i++) {
-            sendMessage(data[i]["sender"], data[i]["content"]);
+            sendMessage(data[i]["sender"], data[i]["content"], data[i]["time"]);
         }
     }   
 });
