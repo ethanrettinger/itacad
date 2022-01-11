@@ -49,7 +49,8 @@ function sendMessage(sender, content) {
         type: "POST",
         data: {
             sender: sender,
-            content: content
+            content: content,
+            time: new Date().getTime()
         },
         dataType: "json",
         success: function(data) {
