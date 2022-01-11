@@ -1,6 +1,8 @@
 // sendMessage function
 
-function sendMessage(sender, content, time = new Date().getTime(), isFromMe = false) {
+function sendMessage(sender, content, options) {
+    let isFromMe = options?.isFromMe;
+    let time = options?.time;
     console.log(content);
     /* check if content is empty */
     if (!content) {
@@ -56,6 +58,11 @@ function sendMessage(sender, content, time = new Date().getTime(), isFromMe = fa
     if (!isFromMe) {
         return;
     }
+    console.log('PostData:', {
+        sender: sender,
+        content: content,
+        time: new Date().getTime(),
+    })
     $.ajax({
         url: '/message_board/api',
         type: 'POST',
@@ -100,7 +107,10 @@ $('form').submit(function (e) {
     let content = $('#messageInput').val();
     $('input').val('');
     // send message
-    sendMessage(sender, content, new Date(), true);
+    sendMessage(sender, content, {
+        time: new Date().getTime(),
+        isFromMe: true,
+    });
 });
 
 // send get request to django server to get messages
@@ -111,7 +121,10 @@ $.ajax({
     success: function (data) {
         console.log(data);
         for (let i = 0; i < data.length; i++) {
-            sendMessage(data[i]['sender'], data[i]['content'], data[i]['time'], false);
+            sendMessage(data[i]['sender'], data[i]['content'], {
+                time: data[i]['time'],
+                isFromMe: false,
+            });
         }
     },
 });
@@ -121,7 +134,10 @@ let socket = io.connect('http://localhost:5500');
 
 // socket detect broadcast message
 socket.on('message', function (data) {
-    sendMessage(data['sender'], data['content'], data['time'], false);
+    sendMessage(data['sender'], data['content'], {
+        time: data['time'],
+        isFromMe: false,
+    });
 });
 
 socket.on('connect', () => {

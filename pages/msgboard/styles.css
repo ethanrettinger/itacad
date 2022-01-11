@@ -12,7 +12,7 @@ body {
     /* fill screen */
     overflow-x: hidden;
     overflow-y: hidden;
-    background: linear-gradient(to bottom right, #42a5c4 0%, #db6cb1 100%);
+    background: linear-gradient(to bottom right, #0496c2 0%, #a50dc4 90%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,8 +56,7 @@ body {
     display: flex;
     overflow-y: visible;
     overflow-x: hidden;
-    flex-direction: column;
-    justify-content: center;
+    display: block;
     width: 100%;
     height: 300%;
     /* add padding to top and bottom */
@@ -74,7 +73,8 @@ body {
     max-width: 60%;
     padding-left: 25px;
     padding-right: 25px;
-    height: 40%;
+    height: auto;
+    min-height: 75px;
     font-size: 1em;
     font-weight: 300;
     font-family: 'Poppins', sans-serif;
@@ -98,17 +98,14 @@ body {
     margin-left: 15px;
 }
 .fromOther {
-    /* align to left side of flex */
-    align-self: flex-start !important;
+    margin-right: auto;
 }
 
 .fromMe {
-    /* align to right side of flex */
-    align-self: flex-end !important;
+    margin-left: auto;
 }
 
 .fromMe > .messageHeader {
-    /* align to right side of flex */
     align-self: flex-end !important;
 }
 
@@ -198,7 +195,7 @@ button[type='submit']:hover {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 0px;
 }
 
 /* Track */
