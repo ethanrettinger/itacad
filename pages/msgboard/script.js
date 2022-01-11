@@ -43,7 +43,7 @@ function sendMessage(sender, content, options) {
     let messageBody = document.createElement('div');
     messageBody.className = 'messageBody';
     messageBody.innerHTML = '<p>' + content + '</p>';
-    
+
     /* append elements to divs */
     header.appendChild(messageName);
     header.appendChild(messageTime);
@@ -124,7 +124,7 @@ let socket = io.connect('http://localhost:5500');
 // socket detect broadcast message
 socket.on('message', function (data) {
     sendMessage(data['sender'], data['content'], {
-        time: data['time'],
+        time: new Date().getTime(),
         isFromMe: false,
     });
 });
