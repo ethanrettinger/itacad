@@ -52,8 +52,17 @@ function sendMessage(sender, content, options) {
     header.appendChild(messageTime);
     msgContainer.appendChild(header);
     msgContainer.appendChild(messageBody);
-
+    /* create 32 character alphanumeric message id and split it with a hyphen every 4 characters */
+    let messageID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    messageID = messageID.match(/.{1,4}/g).join('-');
+    msgContainer.id = messageID;
     /* append msgContainer to message list */
+    /* add messageData(id) to msgContainer click */
+    msgContainer.addEventListener('click', function () {
+        let messageID = this.id;
+    });
+
+
     let messageList = document.getElementById('messageList');
     messageList.appendChild(msgContainer);
     if (!isFromMe) {
@@ -66,6 +75,7 @@ function sendMessage(sender, content, options) {
             sender: sender,
             content: content,
             time: new Date().getTime(),
+            id: messageID
         },
         dataType: 'json',
     });
@@ -129,7 +139,7 @@ setTimeout(() => {
 }, 400)
 
 // open socket on frontend to receive messages
-let socket = io.connect('http://localhost:5500');
+let socket = io.connect('http://localhost:5000');
 
 // socket detect broadcast message
 socket.on('message', function (data) {
@@ -150,3 +160,4 @@ socket.on('disconnect', () => {
         username: 'self',
     });
 });
+
