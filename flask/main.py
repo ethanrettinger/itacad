@@ -12,7 +12,7 @@ socket = SocketIO(app)
 
 @socket.on('message')
 def handle_message(data):
-print('RECIEVED DATA: ' + data)
+    print('RECIEVED DATA: ' + data)
 
 # File request handler
 @app.route('/<path:path>')
