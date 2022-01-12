@@ -53,8 +53,8 @@ body {
 
 #messageList {
     border-top:1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    overflow-y: visible;
+    display: block;
+    overflow-y: scroll;
     overflow-x: hidden;
     display: block;
     width: 100%;
@@ -98,10 +98,18 @@ body {
     margin-left: 15px;
 }
 .fromOther {
+<<<<<<< Updated upstream
+=======
+    /* align to left side of flex */
+>>>>>>> Stashed changes
     margin-right: auto;
 }
 
 .fromMe {
+<<<<<<< Updated upstream
+=======
+    /* align to right side of flex */
+>>>>>>> Stashed changes
     margin-left: auto;
 }
 
