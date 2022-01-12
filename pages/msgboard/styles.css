@@ -98,18 +98,12 @@ body {
     margin-left: 15px;
 }
 .fromOther {
-<<<<<<< Updated upstream
-=======
     /* align to left side of flex */
->>>>>>> Stashed changes
     margin-right: auto;
 }
 
 .fromMe {
-<<<<<<< Updated upstream
-=======
     /* align to right side of flex */
->>>>>>> Stashed changes
     margin-left: auto;
 }
 
