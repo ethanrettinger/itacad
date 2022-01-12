@@ -145,6 +145,10 @@ div h1 {
     width: 20%;
     height: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 form {
@@ -220,4 +224,17 @@ button[type='submit']:hover {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+#signup {
+    display: block;
+    align-self: flex-end;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 80%;
+    cursor: pointer;
+}
+
+#signup:hover {
+    background: rgba(255, 255, 255, 0.4)
 }

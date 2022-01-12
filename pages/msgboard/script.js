@@ -176,3 +176,7 @@ socket.on('oldUser', (user) => {
     oldUser.innerHTML = '<p>' + user + ' has left the chat</p>';
     document.getElementById('messageList').appendChild(oldUser);
 });
+
+function loginPage() {
+    window.location.href = '/login';
+}

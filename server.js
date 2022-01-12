@@ -4,6 +4,7 @@ const express = require('express');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const app = express();
+const bodyParser = require('body-parser');
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
     cors: {
@@ -18,6 +19,7 @@ const io = require('socket.io')(server, {
 const JSONdb = require('simple-json-db');
 const db = new JSONdb('data/messages.json');
 const userdb = new JSONdb('data/users.json');
+app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/pages/msgboard/index.html'));
 });
@@ -25,23 +27,33 @@ app.get('/api', (req, res) => {
     // send data/messages.json to client
     res.send(db.JSON());
 });
-
-app.post('/register', async (req, res) => {
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '/pages/landing/index.html'));
+});
+app.post('/users', async (req, res) => {
     // register user with username and password
-    // save user to data/users.json
-    // return success message
-    const user = req.body;
-    const users = await fs.readFileSync(path.join(__dirname, 'data/users.json'), 'utf8');
-    const usersObj = JSON.parse(users);
-    usersObj.push(user);
-    await fs.writeFileSync(path.join(__dirname, 'data/users.json'), JSON.stringify(usersObj));
-    res.send({
-        success: true,
-        message: 'User registered successfully'
-    });
+    try {
+        const { username, password, display } = req.body;
+        const salt = await bcrypt.genSalt();
+        const hash = await bcrypt.hash(password, salt);
+        
+        let users = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/users.json'), 'utf8'));
+        users.push({
+            'username': username,
+            'password': hash,
+            'display': display
+        });
+        fs.writeFileSync(path.join(__dirname, 'data/users.json'), JSON.stringify(users));
+    
+    
+    
+        res.status(200).send({ success: true, message: 'User registered successfully' });
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
 });
 // Set static folder
-app.use(express.static(path.join(__dirname, 'pages/msgboard')));
+app.use(express.static(path.join(__dirname, 'pages')));
 
 io.on('connection', (socket) => {
 // tell all users that a new user has joined
@@ -76,28 +88,7 @@ app.get('/users', (req, res) => {
     res.sendFile(path.join(__dirname, 'data/users.json'));
 });
 
-app.post('/users', async (req, res) => {
-    // register user with username and password
-    try {
-        const salt = await bcrypt.genSalt();
-        const hash = await bcrypt.hash(req.body.password, salt);
-        const user = {
-            name: req.body.name,
-            username: req.body.username,
-            password: hash,
-            secret: req.body.secret,
-        }
-        let users = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/users.json'), 'utf8'));
-        users.push(user);
-        fs.writeFileSync(path.join(__dirname, 'data/users.json'), JSON.stringify(users));
-    
-    
-    
-        res.status(200).send({ success: true, message: 'User registered successfully' });
-    } catch (err) {
-        res.status(500).send({ error: err.message });
-    }
-});
+
 
 const PORT = 3000;
 

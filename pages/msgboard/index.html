@@ -7,8 +7,8 @@
     <title>Web Page Test</title>
     
     <!-- Local file imports, incompatible with flask import, remove when merged to main -->
-    <link rel='stylesheet' href='styles.css' />
-    <script defer src='script.js'></script>
+    <link rel='stylesheet' href='msgboard/styles.css' />
+    <script defer src='msgboard/script.js'></script>
     <!-- fontawesome  -->
     <!-- jquery cdn -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -29,6 +29,7 @@
         </div>
         <div id='onlineUsers'>
           <h1>Online Users</h1>
+          <button id='signup' class='btn' onclick='loginPage()'><i class='fas fa-sign-in-alt'></i> Log In</button>
         </div>
       </section>
   </body>
