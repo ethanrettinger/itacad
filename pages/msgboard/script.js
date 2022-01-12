@@ -7,7 +7,7 @@ function sendMessage(sender, content, options) {
     if (!content) {
         return;
     }
-    if (content.length == 0) {
+    if (content.trim().length == 0) {
         return;
     }
     /* check if content is too long */
@@ -15,9 +15,7 @@ function sendMessage(sender, content, options) {
         return;
     }
     /* remove html from content */
-    content = content.replace(/<\/?[^>]+(>|$)/g, '');
-    /* remove newlines from content */
-    content = content.replace(/\n/g, '');
+    content = content.replace(/(<([^>]+)>)/gi, '');
 
     /* create divs to hold message and grab examples from index.html */
     let msgContainer = document.createElement('div');
