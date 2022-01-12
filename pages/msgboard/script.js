@@ -1,3 +1,4 @@
+ 
 // sendMessage function
 let initialScroll = false;
 function sendMessage(sender, content, options) {
@@ -39,7 +40,7 @@ function sendMessage(sender, content, options) {
     messageTime.className = 'messageTime';
     // convert unix timestamp to readable time
     // get 12 hour time from timestamp
-    let date = new Date(time * 1000).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+    let date = new Date(time / 1000).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
     messageTime.innerHTML = '<p>' + date + '</p>';
     // format time
 
@@ -140,7 +141,7 @@ setTimeout(() => {
 }, 400)
 
 // open socket on frontend to receive messages
-let socket = io.connect('http://localhost:5000');
+let socket = io();
 
 // socket detect broadcast message
 socket.on('message', function (data) {
