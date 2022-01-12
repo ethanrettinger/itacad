@@ -70,7 +70,7 @@ body {
     padding: 10px;
     margin: 10px;
     width: fit-content;
-    max-width: 60%;
+    max-width: 40%;
     padding-left: 25px;
     padding-right: 25px;
     height: auto;
@@ -80,7 +80,7 @@ body {
     font-family: 'Poppins', sans-serif;
     color: rgba(255, 255, 255, 0.7);
     text-align: left;
-    box-shadow: 4px 4px 6px rgba(97, 97, 97, 0.7);
+    box-shadow: 4px 4px 6px rgba(179, 179, 179, 0.096);
     backdrop-filter: blur(8px);
     display: flex;
     flex-direction: column;

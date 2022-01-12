@@ -1,5 +1,5 @@
 // sendMessage function
-
+let initialScroll = false;
 function sendMessage(sender, content, options) {
     let isFromMe = options?.isFromMe;
     let time = options?.time;
@@ -14,6 +14,11 @@ function sendMessage(sender, content, options) {
     if (content.length > 500) {
         return;
     }
+    // TODO: get client secret from sender and if it matches the user's secret, either:
+    // - send message as You
+    // - get the name of the associated secret and send message as them
+
+    
     /* remove html from content */
     content = content.replace(/(<([^>]+)>)/gi, '');
 
@@ -34,7 +39,7 @@ function sendMessage(sender, content, options) {
     messageTime.className = 'messageTime';
     // convert unix timestamp to readable time
     // get 12 hour time from timestamp
-    let date = new Date(time).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+    let date = new Date(time * 1000).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
     messageTime.innerHTML = '<p>' + date + '</p>';
     // format time
 
@@ -76,15 +81,17 @@ function scrollSmoothToBottom(id) {
     );
 }
 
-scrollSmoothToBottom('messageList');
+
 // thank jesus christ and the rest of the world for stackoverflow :praying:
 
 // when an element is added to #messageList scroll to bottom
 $('#messageList').on('DOMNodeInserted', function () {
     // set height of #messageList to scroll height of #messageList
     $('#messageList').height($('#messageList').prop('scrollHeight'));
+    if(!initialScroll) { return; }
     scrollSmoothToBottom('messageList');
 });
+
 
 $('form').submit(function (e) {
     e.preventDefault();
@@ -115,6 +122,11 @@ $.ajax({
         }
     },
 });
+
+setTimeout(() => {
+    scrollSmoothToBottom('messageList');
+    initialScroll = true;
+}, 400)
 
 // open socket on frontend to receive messages
 let socket = io.connect('http://localhost:5500');
