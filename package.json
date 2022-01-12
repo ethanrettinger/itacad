@@ -1,0 +1,26 @@
+{
+  "name": "itacad",
+  "version": "1.0.0",
+  "description": "This repository contains all of the frontend and backend code for the web server. This isn't intended to be private, since the website will mainly consist of just a message board and perhaps a calendar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exyzmc/itacad.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/exyzmc/itacad/issues"
+  },
+  "homepage": "https://github.com/exyzmc/itacad#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "fs": "0.0.1-security",
+    "socket.io": "^4.4.1",
+    "socketio": "^1.0.0"
+  }
+}
