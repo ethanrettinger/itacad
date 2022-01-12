@@ -5,7 +5,11 @@ const fs = require('fs');
 const bcrypt = require('bcrypt');
 const app = express();
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const server = http.createServer(app);
+const cors = require('cors');
+
+app.use(cors())
 const io = require('socket.io')(server, {
     cors: {
         origin: "http://localhost:8100",
@@ -15,6 +19,18 @@ const io = require('socket.io')(server, {
     },
     allowEIO3: true
 });
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'ixbu428ge',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true },
+  genid: () => {
+    return genid(); // use UUIDs for session IDs
+  }
+}));
+
 
 const JSONdb = require('simple-json-db');
 const db = new JSONdb('data/messages.json');
@@ -44,10 +60,34 @@ app.post('/users', async (req, res) => {
             'display': display
         });
         fs.writeFileSync(path.join(__dirname, 'data/users.json'), JSON.stringify(users));
-    
-    
-    
-        res.status(200).send({ success: true, message: 'User registered successfully' });
+        req.session.userId = username;
+        req.session.loggedIn = true;
+        // redirect user
+        res.redirect('/');
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
+
+app.post('/log_in', async (req, res) => {
+    // login user with username and password
+    try {
+        const { username, password } = req.body;
+        let users = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/users.json'), 'utf8'));
+        let user = users.find(user => user.username === username);
+        if (user) {
+            const match = await bcrypt.compare(password, user.password);
+            if (match) {    
+                res.cookie('userId', username, { maxAge: 86400, httpOnly: true });
+                req.session.userId = username;
+                req.session.loggedIn = true;
+                res.redirect('/');
+            } else {
+                res.redirect(301, '/login');
+            }
+        } else {
+            res.redirect(301, '/login');
+        }
     } catch (err) {
         res.status(500).send({ error: err.message });
     }
@@ -88,7 +128,13 @@ app.get('/users', (req, res) => {
     res.sendFile(path.join(__dirname, 'data/users.json'));
 });
 
-
+function genid() {
+    // make a random UUID
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 
 const PORT = 3000;
 
