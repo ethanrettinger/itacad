@@ -19,6 +19,7 @@
   "homepage": "https://github.com/exyzmc/itacad#readme",
   "dependencies": {
     "activedirectory": "^0.7.2",
+    "bcrypt": "^5.0.1",
     "express": "^4.17.2",
     "fs": "0.0.1-security",
     "simple-json-db": "^1.2.3",
