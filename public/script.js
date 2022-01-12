@@ -1,5 +1,7 @@
  
 // sendMessage function
+const socket = io();
+
 let initialScroll = false;
 function sendMessage(sender, content, options) {
     let isFromMe = options?.isFromMe;
@@ -70,19 +72,11 @@ function sendMessage(sender, content, options) {
     if (!isFromMe) {
         return;
     }
-    $.ajax({
-        url: '/api',
-        type: 'POST',
-        data: {
-            sender: sender,
-            content: content,
-            time: new Date().getTime(),
-            id: messageID
-        },
-        dataType: 'json',
-        successs: function (data) {
-            console.log('Message sent');
-        }
+    socket.emit('message', {
+        sender: sender,
+        content: content,
+        time: time,
+        messageID: messageID
     });
 }
 
@@ -129,9 +123,11 @@ $.ajax({
     type: 'GET',
     dataType: 'json',
     success: function (data) {
-        for (let i = 0; i < data.length; i++) {
-            sendMessage(data[i]['sender'], data[i]['content'], {
-                time: data[i]['time'],
+        console.log(Object.keys(data))
+        for (let i = 0; i < Object.keys(data).length; i++) {
+            let keyname = Object.keys(data)[i];
+            sendMessage(data[keyname]['sender'], data[keyname]['content'], {
+                time: data[keyname]['time'],
                 isFromMe: false,
             });
         }
@@ -144,7 +140,6 @@ setTimeout(() => {
 }, 400)
 
 // open socket on frontend to receive messages
-let socket = io();
 
 // socket detect broadcast message
 socket.on('message', function (data) {
@@ -166,3 +161,18 @@ socket.on('disconnect', () => {
     });
 });
 
+socket.on('newUser', (user) => {
+    // write new user to chat
+    user = user['username'];
+    let newUser = document.createElement('h3');
+    newUser.innerHTML = '<p>' + user + ' has joined the chat</p>';
+    document.getElementById('messageList').appendChild(newUser);
+})
+
+socket.on('oldUser', (user) => {
+    // write old user to chat
+    user = user['username'];
+    let oldUser = document.createElement('h3');
+    oldUser.innerHTML = '<p>' + user + ' has left the chat</p>';
+    document.getElementById('messageList').appendChild(oldUser);
+});

@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/exyzmc/itacad#readme",
   "dependencies": {
+    "activedirectory": "^0.7.2",
     "express": "^4.17.2",
     "fs": "0.0.1-security",
+    "simple-json-db": "^1.2.3",
     "socket.io": "^4.4.1",
     "socketio": "^1.0.0"
   }

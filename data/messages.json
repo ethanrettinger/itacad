@@ -1,122 +1,50 @@
-[
-    {
-        "sender": "self",
-        "content": "wefwef",
-        "time": "1641997790466"
-    },
-    {
-        "sender": "self",
-        "content": "gggg",
-        "time": "1641997791794"
-    },
-    {
-        "sender": "self",
-        "content": "asdasdasd",
-        "time": "1641997793698"
-    },
-    {
+{
+    "2pgb-86iu-lj7v-ubgk-ci01-8l": {
         "sender": "self",
         "content": "f",
-        "time": "1641998841945"
+        "time": 1642005710924,
+        "messageID": "2pgb-86iu-lj7v-ubgk-ci01-8l"
     },
-    {
+    "xujv-d9v3-debj-59qf-484n-v": {
         "sender": "self",
-        "content": "q",
-        "time": "1641998860210"
+        "content": "f",
+        "time": 1642005761210,
+        "messageID": "xujv-d9v3-debj-59qf-484n-v"
     },
-    {
+    "9g68-oqix-ayq3-fcx0-5de8-pz": {
         "sender": "self",
-        "content": "q",
-        "time": "1641998860441"
+        "content": "f",
+        "time": 1642005765666,
+        "messageID": "9g68-oqix-ayq3-fcx0-5de8-pz"
     },
-    {
+    "mtni-jzim-25dx-5r8n-ilhm": {
         "sender": "self",
-        "content": "q",
-        "time": "1641998860657"
+        "content": "f",
+        "time": 1642005824290,
+        "messageID": "mtni-jzim-25dx-5r8n-ilhm"
     },
-    {
+    "ytqp-ehpl-0wrl-qmer-15z1-ka": {
         "sender": "self",
-        "content": "q",
-        "time": "1641998860881"
+        "content": "f",
+        "time": 1642005850448,
+        "messageID": "ytqp-ehpl-0wrl-qmer-15z1-ka"
     },
-    {
-        "sender": "self",
-        "content": "q",
-        "time": "1641998861211"
-    },
-    {
-        "sender": "self",
-        "content": "q",
-        "time": "1641998861730"
-    },
-    {
-        "sender": "self",
-        "content": "q",
-        "time": "1641998862113"
-    },
-    {
-        "sender": "self",
-        "content": "q",
-        "time": "1641998863785"
-    },
-    {
-        "sender": "self",
-        "content": "q",
-        "time": "1641998864585"
-    },
-    {
-        "sender": "self",
-        "content": "s",
-        "time": "1641998865097"
-    },
-    {
-        "sender": "self",
-        "content": "a",
-        "time": "1641998866017"
-    },
-    {
-        "sender": "self",
-        "content": "a",
-        "time": "1641998866632"
-    },
-    {
-        "sender": "self",
-        "content": "a",
-        "time": "1641998866809"
-    },
-    {
-        "sender": "self",
-        "content": "a",
-        "time": "1641998866978"
-    },
-    {
-        "sender": "self",
-        "content": "a",
-        "time": "1641998867137"
-    },
-    {
-        "sender": "self",
-        "content": "a",
-        "time": "1641998867289"
-    },
-    {
-        "sender": "self",
-        "content": "a",
-        "time": "1641998867457"
-    },
-    {
-        "sender": "self",
-        "content": "a",
-        "time": "1641998867617"
-    },
-    {
+    "khm1-2lmc-xlnb-b00w-4jao-h": {
         "sender": "self",
         "content": "e",
-        "time": "1641998880137"
+        "time": 1642006119840,
+        "messageID": "khm1-2lmc-xlnb-b00w-4jao-h"
     },
-    {
+    "w3rv-2gls-kvnb-9q8j-tw45": {
         "sender": "self",
-        "content": "w",
-        "time": "1641998880826"
+        "content": "f",
+        "time": 1642006173771,
+        "messageID": "w3rv-2gls-kvnb-9q8j-tw45"
+    },
+    "yo6o-f6fx-psby-07kp-woz9": {
+        "sender": "self",
+        "content": "a",
+        "time": 1642006211458,
+        "messageID": "yo6o-f6fx-psby-07kp-woz9"
     }
-]
+}
