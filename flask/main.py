@@ -1,15 +1,23 @@
 # Import dependencies
 from flask import Flask, request, render_template, redirect, jsonify, Response
+from flask_socketio import SocketIO
 import os
 import json
 
 # Initialize app object
 app = Flask(__name__, template_folder=os.path.abspath("../pages"), static_folder=None)
 
+# Initialize SocketIO server
+socket = SocketIO(app)
+
+@socket.on('message')
+def handle_message(data):
+print('RECIEVED DATA: ' + data)
+
 # File request handler
 @app.route('/<path:path>')
 def get_resource(path):
-    def get_file(filename):  # pragma: no cover
+    def get_file(filename):
         try:
             src = os.path.join(filename)
             return open(src).read()
@@ -66,4 +74,4 @@ def message_board_api():
 
 # Initialize web server
 if __name__ == '__main__':
-	app.run(debug=True)
+	socket.run(app)
