@@ -60,6 +60,7 @@ function sendMessage(sender, content, options) {
     /* add messageData(id) to msgContainer click */
     msgContainer.addEventListener('click', function () {
         let messageID = this.id;
+        alert(messageID)
     });
 
 
